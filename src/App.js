@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "@material-ui/core";
-import { FormControl, Input, InputLabel } from "@material-ui/core";
+import React, {
+  useState,
+  useEffect
+} from "react";
+import {
+  Button
+} from "@material-ui/core";
+import {
+  FormControl,
+  Input,
+  InputLabel
+} from "@material-ui/core";
 import Todo from "./component/Todo";
-import { db } from "./firebase";
+import {
+  db
+} from "./firebase";
 import firebase from "firebase";
 
 import "./App.css";
-import { DeleteForeverIcon } from "@material-ui/icons/DeleteForever";
+import {
+  DeleteForeverIcon
+} from "@material-ui/icons/DeleteForever";
 
 function App() {
   const [todo, setTodo] = useState([]);
@@ -22,7 +35,10 @@ function App() {
         console.log(snapshot.docs.map((doc) => doc.data()));
         setTodo(
           snapshot.docs.map((doc) => {
-            return { id: doc.id, todo: doc.data().todo };
+            return {
+              id: doc.id,
+              todo: doc.data().todo
+            };
           })
         );
       });
@@ -37,32 +53,48 @@ function App() {
     // setTodo([...todo, input]);
     setInput("");
   };
-  return (
-    <div className="App">
-      <>
-        <h1> hello todo </h1>
-        <FormControl>
-          <InputLabel htmlFor="my-input"> add todo </InputLabel>{" "}
-          <Input
-            value={input}
-            onChange={(event) => {
-              setInput(event.target.value);
-            }}
-          />{" "}
-          <Button
-            disabled={!input}
-            variant="contained"
-            color="primary"
-            onClick={addTodo}
-          >
-            add todo{" "}
-          </Button>{" "}
-        </FormControl>
-        {todo.map((item) => {
-          return <Todo item={item} />;
-        })}{" "}
-      </>{" "}
-    </div>
+  return ( <
+    div className = "App" >
+    <
+    >
+    <
+    h1 > hello todo < /h1> <
+    FormControl >
+    <
+    InputLabel htmlFor = "my-input" > add todo < /InputLabel>{" "} <
+    Input value = {
+      input
+    }
+    onChange = {
+      (event) => {
+        setInput(event.target.value);
+      }
+    }
+    />{" "} <
+    Button disabled = {
+      !input
+    }
+    variant = "contained"
+    color = "primary"
+    onClick = {
+      addTodo
+    } >
+    add todo {
+      " "
+    } <
+    /Button>{" "} <
+    /FormControl> {
+      todo.map((item) => {
+        return <Todo item = {
+          item
+        }
+        />;
+      })
+    } {
+      " "
+    } <
+    />{" "} <
+    /div>
   );
 }
 
